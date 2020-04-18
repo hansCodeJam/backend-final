@@ -5,7 +5,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="wrapper">
+      <% data.forEach((player) => { %>
+      <aside>
+        
+            <h6>Games Played: <%= player.games_played %> </h6>
+            <h6>Field Goals Made Per Game: <%= player.field_goals_made_per_game %> </h6>
+            <h6>Rebound: <%= player.rebounds_per_game %> </h6>
+            <h6>Assists: <%= player.assists_per_game %> </h6>
+          </div>
+      </div>
+      </aside>
+      <% }) %>
+    </div>
   </body>
 </html>
