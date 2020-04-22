@@ -1,15 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-var blogRouter = require('./routes/blog');
+const basketballRouter = require('./routes/apiRouter');
 
-var app = express();
+const app = express();
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -28,8 +29,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
 
-app.use('/', blogRouter);
+app.use('/api/v1', basketballRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
